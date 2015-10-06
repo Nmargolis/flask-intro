@@ -10,7 +10,20 @@ app = Flask(__name__)
 # route to handle the landing page of a website.
 @app.route('/')
 def start_here():
-    return "Hi! This is the home page."
+    return """
+    <!doctype html>
+        <html>
+            <head>
+                <title>Home Page</title>
+            </head>
+
+            <body>
+            <h1>Hi this is home page</h1>
+            <a href="/hello">Click here to say hello</a>
+            </body>
+        </html>
+        """
+
 
 # route to display a simple web page
 @app.route('/hello')
@@ -25,22 +38,43 @@ def say_hello():
             <h1>Hi There!</h1>
             <form action="/greet">
                 <label>What's your name? <input type="text" name="person"></label>
+    
+                <label>Choose a compliment
+                    <input type="radio" name="compliment" value="{0}">{0} 
+                    <input type="radio" name="compliment" value="{1}">{1}  
+                    <input type="radio" name="compliment" value="{2}">{2}
+                    <input type="radio" name="compliment" value="{3}">{3}
+                    <input type="radio" name="compliment" value="{4}">{4}
+                    <input type="radio" name="compliment" value="{5}">{5}
+                    <input type="radio" name="compliment" value="{6}">{6}
+                    <input type="radio" name="compliment" value="{7}">{7}
+                    <input type="radio" name="compliment" value="{8}">{8}
+                    <input type="radio" name="compliment" value="{9}">{9}
+                    <input type="radio" name="compliment" value="{10}">{10}
+                    <input type="radio" name="compliment" value="{11}">{11}
+                    <input type="radio" name="compliment" value="{12}">{12}
+                    <input type="radio" name="compliment" value="{13}">{13}
+
+
+                </label>
                 <input type="submit">
             </form>
         </body>
     </html>
 
-    """
+    """.format('awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
+        'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely')
 
 @app.route('/greet')
 def greet_person():
     player = request.args.get("person")
+    compliment = request.args.get("compliment")
 
-    AWESOMENESS = [
-        'awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
-        'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely']
+    # AWESOMENESS = [
+    #     'awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
+    #     'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely']
 
-    compliment = choice(AWESOMENESS)
+    # compliment = choice(AWESOMENESS)
 
     return """
     <!DOCTYPE html>
