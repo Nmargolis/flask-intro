@@ -36,10 +36,10 @@ def say_hello():
         </head>
         <body>
             <h1>Hi There!</h1>
-            <form action="/greet">
+            <form action="/greet" method="POST">
                 <label>What's your name? <input type="text" name="person"></label>
-    
-                <label>Choose a compliment
+                <br>
+                <label>Choose a compliment:
                     <input type="radio" name="compliment" value="{0}">{0} 
                     <input type="radio" name="compliment" value="{1}">{1}  
                     <input type="radio" name="compliment" value="{2}">{2}
@@ -65,10 +65,10 @@ def say_hello():
     """.format('awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
         'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely')
 
-@app.route('/greet')
+@app.route('/greet', methods=["POST"])
 def greet_person():
-    player = request.args.get("person")
-    compliment = request.args.get("compliment")
+    player = request.form.get("person")
+    compliment = request.form.get("compliment")
 
     # AWESOMENESS = [
     #     'awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
