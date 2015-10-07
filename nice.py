@@ -59,11 +59,24 @@ def say_hello():
                 </label>
                 <input type="submit">
             </form>
+            <br> <br>
+            <form action="/diss">
+                <label>What's your name? <input type="text" name="person"></label>
+                <br>
+                <label>Choose a diss:
+                    <input type="radio" name="diss" value="{14}">{14} 
+                    <input type="radio" name="diss" value="{15}">{15}  
+
+                </label>
+                <input type="submit">
+            </form>
+
+
         </body>
     </html>
 
     """.format('awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
-        'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely')
+        'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely', 'stinky', 'yucky')
 
 @app.route('/greet', methods=["POST"])
 def greet_person():
@@ -87,6 +100,24 @@ def greet_person():
         </body>
     </html>""" % (player, compliment)
 
+@app.route('/diss')
+def diss_person():
+    player = request.args.get("person")
+    diss = request.args.get("diss")
+    return """
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>diss</title>
+        </head>
+        <body>
+            Hi %s I think you're %s!
+        </body>
+    </html>""" % (player, diss)
+
+
+
+        
 
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads" our web app
